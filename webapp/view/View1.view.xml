@@ -1,0 +1,569 @@
+<mvc:View controllerName="aip.as.invcultivo.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:c="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar">
+
+    <Page id="page" title="{i18n>MAIN_PAGE}">
+        <content>
+            <Panel id="_IDGenPanel1" accessibleRole="Region">
+                <t:Table id="tblMain"
+                    visibleRowCount="15"   
+                    class="sapUiResponsiveMargin"
+                    width="auto"
+                    rows="{oData>/results}"
+                    selectionMode="Single"
+                    enableBusyIndicator="true">
+                    <t:extension>
+                        <OverflowToolbar id="_IDGenOverflowToolbar1" class="sapUiSmallMarginBottom" >
+                            <content>
+                            <!-- Filtro Cultivo (con matchcode) -->
+                            <!--<Input id="txtCultivo" 
+                                    showValueHelp="true"
+                                    width="10%"
+                                    placeholder="Cultivo"
+                                    liveChange="onChangeCultivo"
+                                    valueHelpRequest="onOpenCultivoPress" />-->
+                            <!--Filtro Cultivo MULTIINPUT-->
+                            <MultiInput id="txtCultivo" 
+                                    showValueHelp="true"
+                                    width="10%"
+                                    placeholder="Cultivo"
+                                    liveChange="onChangeCultivo"
+                                    valueHelpRequest="onOpenCultivoPress" />
+                            <!-- Filtro Tipo de Campo-->
+                            <!--<Input id="txtTipcampo" 
+                                    showValueHelp="true"
+                                    width="10%" 
+                                    placeholder="Tipo de campo"
+                                    liveChange="onChangeTipcampo"
+                                    valueHelpRequest="onOpenTipcampoPress" />-->
+                            <!--Filtro Tipo de Campo con MultiInput-->
+                            <MultiInput id="txtTipcampo" 
+                                    showValueHelp="true"
+                                    width="10%"
+                                    placeholder="Tipo de campo"
+                                    liveChange="onChangeTipcampo"
+                                    valueHelpRequest="onOpenTipcampoPress" />
+                            <!-- Filtro Proyecto-->
+                            <!--<Input id="txtProyecto" 
+                                    showValueHelp="true"
+                                    width="10%" 
+                                    placeholder="Proyecto"
+                                    liveChange="onChangeProyecto"
+                                    valueHelpRequest="onOpenProyectoPress" />-->
+                            <!--Filtro Proyecto MultiInput-->
+                            <MultiInput id="txtProyecto" 
+                                    showValueHelp="true"
+                                    width="10%"
+                                    placeholder="Proyecto"
+                                    liveChange="onChangeProyecto"
+                                    valueHelpRequest="onOpenProyectoPress" />
+                            <!-- Filtro Admin-->
+                            <!--<Input id="txtAdmin" 
+                                    showValueHelp="true"
+                                    width="10%" 
+                                    placeholder="Administracion" 
+                                    liveChange="onChangeAdmin"
+                                    valueHelpRequest="onOpenAdminPress" />-->
+                            <!--Filtro Admin MultiInput-->
+                            <MultiInput id="txtAdmin"
+                                         showValueHelp="true"
+                                         width="10%"
+                                         placeholder="Administracion"
+                                         liveChange="onChangeAdmin"
+                                         valueHelpRequest="onOpenAdminPress"/>
+                            <!-- Filtro Zona (con matchcode)-->
+                            <!--<Input id="txtZona" 
+                                    showValueHelp="true"
+                                    width="10%" 
+                                    placeholder="Zona" 
+                                    liveChange="onChangeZona"
+                                    valueHelpRequest="onOpenZonaPress" />-->
+                            <!--Filtro Zona MultiInput-->
+                            <MultiInput id="txtZona"
+                                         showValueHelp="true"
+                                         width="10%"
+                                         placeholder="Zona"
+                                         liveChange="onChangeZona"
+                                         valueHelpRequest="onOpenZonaPress"/>
+                            <!-- Filtro Etapa-->
+                            <!--<Input id="txtEtapa" 
+                                    showValueHelp="true"
+                                    width="10%" 
+                                    placeholder="Etapa"  
+                                    liveChange="onChangeEtapa"
+                                    valueHelpRequest="onOpenEtapaPress" />-->
+                            <!--Filtro Etapa MultiInput-->
+                            <MultiInput id="txtEtapa"
+                                         showValueHelp="true"
+                                         width="10%"
+                                         placeholder="Etapa"
+                                         liveChange="onChangeEtapa"
+                                         valueHelpRequest="onOpenEtapaPress"/>
+                            <!-- Botón para acción de filtro -->
+                            <Button id="btnFiltro" 
+                                icon="sap-icon://filter"
+                                tooltip="{i18n>filterButtonText}"
+                                press=".onFilterFunction"/>
+                            <!---->
+                            <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                            <!-- Botón para exportar tabla en Excel -->
+                            <Button id="_IDGenButton2" 
+                                icon="sap-icon://excel-attachment"
+                                tooltip="{i18n>exportButtonText}"
+                                press="onExport"/>
+                            </content>
+                        </OverflowToolbar>
+                    </t:extension>
+
+                    <t:columns>
+                    <!--1.Columna Administracion-->
+                    <t:Column id="_IDGenColumn1" width="8rem" showSortMenuEntry="true" sortProperty="Admin">
+                        <Label id="_IDGenLabel1" text="{i18n>ADMIN}" />
+                        <t:template>
+                            <Text id="_IDGenText1" text="{oData>Admin}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--1.Columna Descripcion Administracion-->
+                    <t:Column id="_IDGenColumn55" width="15rem" showSortMenuEntry="true" sortProperty="DescAdm">
+                        <Label id="_IDGenLabel55" text="{i18n>DESC_ADM}" />
+                        <t:template>
+                            <Text id="_IDGenText55" text="{oData>DescAdm}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--2.Columna Zona-->
+                    <t:Column id="_IDGenColumn2" width="4rem" showSortMenuEntry="true" sortProperty="Zona">
+                        <Label id="_IDGenLabel2" text="{i18n>ZONA}" />
+                        <t:template>
+                            <Text id="_IDGenText2" text="{oData>Zona}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--1.Columna Descripcion Zona-->
+                    <t:Column id="_IDGenColumn56" width="13rem" showSortMenuEntry="true" sortProperty="DescZona">
+                        <Label id="_IDGenLabel56" text="{i18n>DESC_ZONA}" />
+                        <t:template>
+                            <Text id="_IDGenText56" text="{oData>DescZona}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--3.Columna Fecha de Creacion del Registro-->
+                    <t:Column id="_IDGenColumn3" width="10rem" showSortMenuEntry="true" sortProperty="Erdat">
+                        <Label id="_IDGenLabel3" text="{i18n>ERDAT}" />
+                        <t:template>
+                            <Text id="_IDGenText3" text="{
+                                parts:[{path:'oData>Erdat'}],
+                                formatter: '.formatter.fecha'}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--4.Columna Tipo de Campo-->
+                    <t:Column id="_IDGenColumn4" width="8rem" showSortMenuEntry="true" sortProperty="Tipcampo">
+                        <Label id="_IDGenLabel4" text="{i18n>TIPCAMPO}" />
+                        <t:template>
+                            <Text id="_IDGenText4" text="{oData>Tipcampo}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--5.Columna Plantilla-->
+                    <t:Column id="_IDGenColumn5" width="10rem" showSortMenuEntry="true" sortProperty="Usr00">
+                        <Label id="_IDGenLabel5" text="{i18n>USR00}" />
+                        <t:template>
+                            <Text id="_IDGenText5" text="{oData>Usr00}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--6.Columna Suelo-->
+                    <t:Column id="_IDGenColumn6" width="4rem" showSortMenuEntry="true" sortProperty="Suelo">
+                        <Label id="_IDGenLabel6" text="{i18n>SUELO}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText6" textAlign="End" number="{ path: 'oData>Suelo', formatter: '.formatter.numero'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--10.Columna H TOTALES-->
+                     <t:Column id="_IDGenColumn10" width="8rem" showSortMenuEntry="true" sortProperty="Htotales">
+                        <Label id="_IDGenLabel10" text="{i18n>HTOTALES}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText10" textAlign="End" number="{ path: 'oData>Htotales', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--11.Columna H NETAS-->
+                    <t:Column id="_IDGenColumn11" width="7rem" showSortMenuEntry="true" sortProperty="Hnetas">
+                        <Label id="_IDGenLabel11" text="{i18n>HNETAS}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText11" textAlign="End" number="{ path: 'oData>Hnetas', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--7.Columna Elemento PEP-->
+                    <t:Column id="_IDGenColumn7" width="13rem" showSortMenuEntry="true" sortProperty="Posid">
+                        <Label id="_IDGenLabel7" text="{i18n>POSID}" />
+                        <t:template>
+                            <Text id="_IDGenText7" text="{oData>Posid}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--8.Columna Fecha Nacimiento-->
+                    <t:Column id="_IDGenColumn8" width="10rem" showSortMenuEntry="true" sortProperty="FecNacPlnt">
+                        <Label id="_IDGenLabel8" text="{i18n>FEC_NAC_PLNT}" />
+                        <t:template>
+                            <Text id="_IDGenText8" text="{
+                                parts:[{path:'oData>FecNacPlnt'}],
+                                formatter: '.formatter.fecha'}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--9.Columna Descripcion Campo-->
+                    <t:Column id="_IDGenColumn9" width="14rem" showSortMenuEntry="true" sortProperty="Descrip">
+                        <Label id="_IDGenLabel9" text="{i18n>DESCRIP}" />
+                        <t:template>
+                            <Text id="_IDGenText9" text="{oData>Descrip}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--Columna Estatus del Sistema-->
+                    <t:Column id="_IDGenColumn59" width="5rem" showSortMenuEntry="true" sortProperty="Statxx">
+                        <Label id="_IDGenLabel59" text="{i18n>STATXX}" />
+                        <t:template>
+                            <Text id="_IDGenText59" text="{oData>Statxx}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    
+                    <!--12.Columna Variedad-->
+                    <t:Column id="_IDGenColumn12" width="8rem" showSortMenuEntry="true" sortProperty="Variedad">
+                        <Label id="_IDGenLabel12" text="{i18n>VARIEDAD}" />
+                        <t:template>
+                            <Text id="_IDGenText12" text="{oData>Variedad}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--13.Columna Edad-->
+                    <t:Column id="_IDGenColumn13" width="4rem" showSortMenuEntry="true" sortProperty="Edad">
+                        <Label id="_IDGenLabel13" text="{i18n>EDAD}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText13" textAlign="End" number="{ path: 'oData>Edad', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--14.Columna Distancia-->
+                    <t:Column id="_IDGenColumn14" width="5rem" showSortMenuEntry="true" sortProperty="Distancia">
+                        <Label id="_IDGenLabel14" text="{i18n>DISTANCIA}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText14" textAlign="End" number="{ path: 'oData>Distancia', formatter: '.formatter.monto3'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--15.Columna UM_DIST-->
+                    <t:Column id="_IDGenColumn15" width="4rem" showSortMenuEntry="true" sortProperty="UmDist">
+                        <Label id="_IDGenLabel15" text="{i18n>UM_DIST}" />
+                        <t:template>
+                            <Text id="_IDGenText15" text="{oData>UmDist}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--16.Columna Cod_Forma-->
+                    <!--<t:Column id="_IDGenColumn16" width="8rem" showSortMenuEntry="true" sortProperty="CodForma">
+                        <Label id="_IDGenLabel16" text="{i18n>COD_FORMA}" />
+                        <t:template>
+                            <Text id="_IDGenText16" text="{oData>CodForma}" wrapping="false" />
+                        </t:template>
+                    </t:Column>-->
+                    <!--17.Columna Cod_Fuente-->
+                    <!--<t:Column id="_IDGenColumn17" width="8rem" showSortMenuEntry="true" sortProperty="CodFuente">
+                        <Label id="_IDGenLabel17" text="{i18n>COD_FUENTE}" />
+                        <t:template>
+                            <Text id="_IDGenText17" text="{oData>CodFuente}" wrapping="false" />
+                        </t:template>
+                    </t:Column>-->
+                    <!--18.Columna Riego-->
+                    <t:Column id="_IDGenColumn18" width="6rem" showSortMenuEntry="true" sortProperty="Riego">
+                        <Label id="_IDGenLabel18" text="{i18n>RIEGO}" />
+                        <t:template>
+                            <Text id="_IDGenText18" text="{oData>Riego}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                     <!--18.Columna Fuente-->
+                    <t:Column id="_IDGenColumn57" width="9rem" showSortMenuEntry="true" sortProperty="Fuente">
+                        <Label id="_IDGenLabel57" text="{i18n>FUENTE}" />
+                        <t:template>
+                            <Text id="_IDGenText57" text="{oData>Fuente}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--19.Columna Bocatoma-->
+                    <t:Column id="_IDGenColumn19" width="6rem" showSortMenuEntry="true" sortProperty="Zzboctm">
+                        <Label id="_IDGenLabel19" text="{i18n>ZZBOCTM}" />
+                        <t:template>
+                            <Text id="_IDGenText19" text="{oData>Zzboctm}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--20.Columna Laterales de Riego-->
+                    <t:Column id="_IDGenColumn20" width="8rem" showSortMenuEntry="true" sortProperty="Zzltlrg">
+                        <Label id="_IDGenLabel20" text="{i18n>ZZLTLRG}" />
+                        <t:template>
+                            <Text id="_IDGenText20" text="{oData>Zzltlrg}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--21.Columna Nro_Riego-->
+                    <t:Column id="_IDGenColumn21" width="6rem" showSortMenuEntry="true" sortProperty="NroRiego">
+                        <Label id="_IDGenLabel21" text="{i18n>NRO_RIEGO}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText21" textAlign="End" number="{ path: 'oData>NroRiego', formatter: '.formatter.numero'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--3.Columna Fecha de Creacion del Registro-->
+                    <t:Column id="_IDGenColumn58" width="8rem" showSortMenuEntry="true" sortProperty="RegUltRiego">
+                        <Label id="_IDGenLabel58" text="{i18n>REG_ULT_RIEGO}" />
+                        <t:template>
+                            <Text id="_IDGenText58" text="{
+                                parts:[{path:'oData>RegUltRiego'}],
+                                formatter: '.formatter.fecha'}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--37.Columna FEC_INI_AGOSTE-->
+                    <t:Column id="_IDGenColumn37" width="8rem" showSortMenuEntry="true" sortProperty="FecIniAgoste">
+                        <Label id="_IDGenLabel37" text="{i18n>FEC_INI_AGOSTE}" />
+                        <t:template>
+                            <Text id="_IDGenText37" text="{
+                                parts:[{path:'oData>FecIniAgoste'}],
+                                formatter: '.formatter.fecha'}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--38.Columna Edad_Agoste-->
+                    <t:Column id="_IDGenColumn38" width="6rem" showSortMenuEntry="true" sortProperty="EdadAgoste">
+                        <Label id="_IDGenLabel38" text="{i18n>EDAD_AGOSTE}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText38" textAlign="End" number="{ path: 'oData>EdadAgoste', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--39.Columna Dias_Agoste-->
+                    <t:Column id="_IDGenColumn39" width="5rem" showSortMenuEntry="true" sortProperty="DiasAgoste">
+                        <Label id="_IDGenLabel39" text="{i18n>DIAS_AGOSTE}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText39" textAlign="End" number="{ path: 'oData>DiasAgoste', formatter: '.formatter.numero'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--40.Columna Fec_Madurante-->
+                    <t:Column id="_IDGenColumn40" width="7rem" showSortMenuEntry="true" sortProperty="FecMadurante">
+                        <Label id="_IDGenLabel40" text="{i18n>FEC_MADURANTE}" />
+                        <t:template>
+                            <Text id="_IDGenText40" text="{
+                                parts:[{path:'oData>FecMadurante'}],
+                                formatter: '.formatter.fecha'}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--41.Columna Edad_Madurante-->
+                    <t:Column id="_IDGenColumn41" width="6rem" showSortMenuEntry="true" sortProperty="EdadMadurante">
+                        <Label id="_IDGenLabel41" text="{i18n>EDAD_MADURANTE}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText41" textAlign="End" number="{ path: 'oData>EdadMadurante', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--42.Columna Semana_Madurante-->
+                    <t:Column id="_IDGenColumn42" width="6rem" showSortMenuEntry="true" sortProperty="SemanaMadurante">
+                        <Label id="_IDGenLabel42" text="{i18n>SEMANA_MADURANTE}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText42" textAlign="End" number="{ path: 'oData>SemanaMadurante', formatter: '.formatter.numero'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--22.Columna K_cloruro-->
+                    <t:Column id="_IDGenColumn22" width="6rem" showSortMenuEntry="true" sortProperty="KCloruro">
+                        <Label id="_IDGenLabel22" text="{i18n>K_CLORURO}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText22" textAlign="End" number="{ path: 'oData>KCloruro', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--23.Columna K_ajinofer-->
+                    <t:Column id="_IDGenColumn23" width="6rem" showSortMenuEntry="true" sortProperty="KAjinofer">
+                        <Label id="_IDGenLabel23" text="{i18n>K_AJINOFER}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText23" textAlign="End" number="{ path: 'oData>KAjinofer', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--24.Columna Edad_Fert1-->
+                    <t:Column id="_IDGenColumn24" width="8rem" showSortMenuEntry="true" sortProperty="EdadFert1">
+                        <Label id="_IDGenLabel24" text="{i18n>EDAD_FERT1}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText24" textAlign="End" number="{ path: 'oData>EdadFert1', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--25.Columna Edad_Fert2-->
+                    <t:Column id="_IDGenColumn25" width="8rem" showSortMenuEntry="true" sortProperty="EdadFert2">
+                        <Label id="_IDGenLabel25" text="{i18n>EDAD_FERT2}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText25" textAlign="End" number="{ path: 'oData>EdadFert2', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--26.Columna Edad_Fert3-->
+                    <t:Column id="_IDGenColumn26" width="8rem" showSortMenuEntry="true" sortProperty="EdadFert3">
+                        <Label id="_IDGenLabel26" text="{i18n>EDAD_FERT3}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText26" textAlign="End" number="{ path: 'oData>EdadFert3', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--27.Columna Edad_Fert4-->
+                    <t:Column id="_IDGenColumn27" width="8rem" showSortMenuEntry="true" sortProperty="EdadFert4">
+                        <Label id="_IDGenLabel27" text="{i18n>EDAD_FERT4}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText27" textAlign="End" number="{ path: 'oData>EdadFert4', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--28.Columna N_Urea-->
+                    <t:Column id="_IDGenColumn28" width="5rem" showSortMenuEntry="true" sortProperty="NUrea">
+                        <Label id="_IDGenLabel28" text="{i18n>N_UREA}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText28" textAlign="End" number="{ path: 'oData>NUrea', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--29.Columna N_Ajinofer-->
+                    <t:Column id="_IDGenColumn29" width="6rem" showSortMenuEntry="true" sortProperty="NAjinofer">
+                        <Label id="_IDGenLabel29" text="{i18n>N_AJINOFER}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText29" textAlign="End" number="{ path: 'oData>NAjinofer', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--30.Columna EDAD_CTRL_MALEZA1-->
+                    <t:Column id="_IDGenColumn30" width="6rem" showSortMenuEntry="true" sortProperty="EdadCtrlMaleza1">
+                        <Label id="_IDGenLabel30" text="{i18n>EDAD_CTRL_MALEZA1}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText30" textAlign="End" number="{ path: 'oData>EdadCtrlMaleza1', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--31.Columna EDAD_CTRL_MALEZA2-->
+                    <t:Column id="_IDGenColumn31" width="7rem" showSortMenuEntry="true" sortProperty="EdadCtrlMaleza2">
+                        <Label id="_IDGenLabel31" text="{i18n>EDAD_CTRL_MALEZA2}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText31" textAlign="End" number="{ path: 'oData>EdadCtrlMaleza2', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--32.Columna EDAD_CTRL_MALEZA3-->
+                    <t:Column id="_IDGenColumn32" width="5rem" showSortMenuEntry="true" sortProperty="EdadCtrlMaleza3">
+                        <Label id="_IDGenLabel32" text="{i18n>EDAD_CTRL_MALEZA3}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText32" textAlign="End" number="{ path: 'oData>EdadCtrlMaleza3', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--33.Columna EDAD_CTRL_MALEZA4-->
+                    <t:Column id="_IDGenColumn33" width="5rem" showSortMenuEntry="true" sortProperty="EdadCtrlMaleza4">
+                        <Label id="_IDGenLabel33" text="{i18n>EDAD_CTRL_MALEZA4}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText33" textAlign="End" number="{ path: 'oData>EdadCtrlMaleza4', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--34.Columna EDAD_CTRL_MALEZA5-->
+                    <t:Column id="_IDGenColumn34" width="5rem" showSortMenuEntry="true" sortProperty="EdadCtrlMaleza5">
+                        <Label id="_IDGenLabel34" text="{i18n>EDAD_CTRL_MALEZA5}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText34" textAlign="End" number="{ path: 'oData>EdadCtrlMaleza5', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--35.Columna EDAD_CTRL_MALEZA6-->
+                    <t:Column id="_IDGenColumn35" width="5rem" showSortMenuEntry="true" sortProperty="EdadCtrlMaleza6">
+                        <Label id="_IDGenLabel35" text="{i18n>EDAD_CTRL_MALEZA6}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText35" textAlign="End" number="{ path: 'oData>EdadCtrlMaleza6', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--36.Columna EDAD_CTRL_MALEZA7-->
+                    <t:Column id="_IDGenColumn36" width="5rem" showSortMenuEntry="true" sortProperty="EdadCtrlMaleza7">
+                        <Label id="_IDGenLabel36" text="{i18n>EDAD_CTRL_MALEZA7}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText36" textAlign="End" number="{ path: 'oData>EdadCtrlMaleza7', formatter: '.formatter.monto1'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--43.Columna Liberacion Avispas-->
+                    <t:Column id="_IDGenColumn43" width="10rem" showSortMenuEntry="true" sortProperty="LibAvispa">
+                        <Label id="_IDGenLabel43" text="{i18n>LIB_AVISPA}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText43" textAlign="End" number="{ path: 'oData>LibAvispa', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--44.Columna Liberacion Crisopas-->
+                    <t:Column id="_IDGenColumn44" width="10rem" showSortMenuEntry="true" sortProperty="LibCrisopa">
+                        <Label id="_IDGenLabel44" text="{i18n>LIB_CRISOPA}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText44" textAlign="End" number="{ path: 'oData>LibCrisopa', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--45.Columna Liberacion Mosca-->
+                    <t:Column id="_IDGenColumn45" width="10rem" showSortMenuEntry="true" sortProperty="LibMosca">
+                        <Label id="_IDGenLabel45" text="{i18n>LIB_MOSCA}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText45" textAlign="End" number="{ path: 'oData>LibMosca', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--46.Columna CT_ET_ROED-->
+                    <t:Column id="_IDGenColumn46" width="12rem" showSortMenuEntry="true" sortProperty="CtEtRoed">
+                        <Label id="_IDGenLabel46" text="{i18n>CT_ET_ROED}" />
+                        <t:template>
+                            <ObjectNumber id="_IDGenText46" textAlign="End" number="{ path: 'oData>CtEtRoed', formatter: '.formatter.monto2'}"/>
+                        </t:template>
+                    </t:Column>
+                    <!--47.Columna REND_PROY-->
+                    <t:Column id="_IDGenColumn47" width="11rem" showSortMenuEntry="true" sortProperty="RendProy">
+                        <Label id="_IDGenLabel47" text="{i18n>REND_PROY}" />
+                        <t:template>
+                            <Text id="_IDGenText47" text="{oData>RendProy}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--48.Columna SAC_PROY-->
+                    <t:Column id="_IDGenColumn48" width="10rem" showSortMenuEntry="true" sortProperty="SacProy">
+                        <Label id="_IDGenLabel48" text="{i18n>SAC_PROY}" />
+                        <t:template>
+                            <Text id="_IDGenText48" text="{oData>SacProy}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--49.Columna Floracion-->
+                    <t:Column id="_IDGenColumn49" width="7rem" showSortMenuEntry="true" sortProperty="Floracion">
+                        <Label id="_IDGenLabel49" text="{i18n>FLORACION}" />
+                        <t:template>
+                            <Text id="_IDGenText49" text="{oData>Floracion}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--50.Columna EP_Barreno-->
+                    <t:Column id="_IDGenColumn50" width="8rem" showSortMenuEntry="true" sortProperty="EpBarreno">
+                        <Label id="_IDGenLabel50" text="{i18n>EP_BARRENO}" />
+                        <t:template>
+                            <Text id="_IDGenText50" text="{oData>EpBarreno}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--51.Columna Grado_Roya-->
+                    <t:Column id="_IDGenColumn51" width="8rem" showSortMenuEntry="true" sortProperty="GradoRoya">
+                        <Label id="_IDGenLabel51" text="{i18n>GRADO_ROYA}" />
+                        <t:template>
+                            <Text id="_IDGenText51" text="{oData>GradoRoya}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--52.Columna Cultivo-->
+                    <t:Column id="_IDGenColumn52" width="5rem" showSortMenuEntry="true" sortProperty="Cultivo">
+                        <Label id="_IDGenLabel52" text="{i18n>CULTIVO}" />
+                        <t:template>
+                            <Text id="_IDGenText52" text="{oData>Cultivo}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--53.Columna Proyecto-->
+                    <t:Column id="_IDGenColumn53" width="5rem" showSortMenuEntry="true" sortProperty="Proyecto">
+                        <Label id="_IDGenLabel53" text="{i18n>PROYECTO}" />
+                        <t:template>
+                            <Text id="_IDGenText53" text="{oData>Proyecto}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <!--54.Columna Etapa-->
+                    <t:Column id="_IDGenColumn54" width="5rem" showSortMenuEntry="true" sortProperty="Etapa">
+                        <Label id="_IDGenLabel54" text="{i18n>ETAPA}" />
+                        <t:template>
+                            <Text id="_IDGenText54" text="{oData>Etapa}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+
+                    </t:columns>
+
+                    <t:footer>
+                        <Toolbar id="_IDGenToolbar1">
+                            <Label id="_IDGenLabel81" text="Cantidad Filas:" />
+                            <Text id="txtCount" wrapping="false" />
+                            <ToolbarSpacer id="_IDGenToolbarSpacer2"/>
+                            <Label id="_IDGenLabel82" text="H Totales:" />
+                            <Text id="txtHtotales" wrapping="false" />
+                            <Toolbar id="_IDGenToolbarSpacer3"/>
+                            <Label id="_IDGenLabel83" text="H Netas:" />
+                            <Text id="txtHnetas" wrapping="false" />
+                        </Toolbar>
+                     </t:footer>
+                    
+                </t:Table>
+            </Panel>
+        </content>
+
+    </Page>
+</mvc:View>
